@@ -1,0 +1,22 @@
+
+name: Carbon Hello World
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Carbon Dependecies and Run Hello World
+        run: |
+          brew install bazelisk
+          brew install llvm
+          export PATH="$(brew --prefix llvm)/bin:${PATH}"
+          git clone https://github.com/carbon-language/carbon-lang
+          cd carbon-lang
+          bazel run //explorer -- ./explorer/testdata/print/format_only.carbon
