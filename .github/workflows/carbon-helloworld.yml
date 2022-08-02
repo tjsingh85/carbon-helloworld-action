@@ -17,4 +17,6 @@ jobs:
           brew install bazelisk
           brew install llvm
           export PATH="$(brew --prefix llvm)/bin:${PATH}"
-          bazel run //explorer -- helloworld.carbon
+          git clone https://github.com/carbon-language/carbon-lang
+          cd carbon-lang
+          bazel run //explorer -- ./explorer/testdata/print/format_only.carbon
